@@ -80,7 +80,9 @@ class MainActivity : AppCompatActivity(), MainView, AnkoLogger {
             afterTextChanged {
                 when (SWITHCER){
                     "INDONESIA_TO_MADURA" ->{
-                        val newList = listKategoriCopy.filter { kata -> kata.indonesia.contains(input_kata.text.toString()) }
+                        val newList = listKategoriCopy.filter {
+                                kata -> kata.indonesia.contains(input_kata.text.toString().toLowerCase())
+                        }
                         newList.let{
                             info("REALTIME CHANGE = $it")
                             listKategori.clear()
@@ -90,7 +92,7 @@ class MainActivity : AppCompatActivity(), MainView, AnkoLogger {
                     }
 
                     "MADURA_TO_INDONESIA" ->{
-                        val newList = listKategoriCopy.filter { kata -> kata.madura.contains(input_kata.text.toString()) }
+                        val newList = listKategoriCopy.filter { kata -> kata.madura.contains(input_kata.text.toString().toLowerCase()) }
                         newList.let{
                             info("REALTIME CHANGE = $it")
                             listKategori.clear()
@@ -114,7 +116,7 @@ class MainActivity : AppCompatActivity(), MainView, AnkoLogger {
                     insert(Kosakata.TABLE_KOSAKATA,
                 Kosakata.indonesia to data[1],
                 Kosakata.madura to data[2])
-        }
+                }
             }
         }
     }
