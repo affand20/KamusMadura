@@ -105,17 +105,30 @@ class MainActivity : AppCompatActivity(), MainView, AnkoLogger {
     }
 
     private fun insertKosakata(){
-        val kosakata = listOf(Kosakata("akar","ramok"),Kosakata("ampun","saporah"),Kosakata("anyam","ngekak"),Kosakata("asap","kokos"),Kosakata("awan","ondem"),Kosakata("terimakasih","sakalangkong"))
-
-        for (i in kosakata.indices){
-            database.use {
-                insert(Kosakata.TABLE_KOSAKATA,
-                    Kosakata.indonesia to kosakata[i].indonesia,
-                    Kosakata.madura to kosakata[i].madura)
+        applicationContext.assets.open("mobtekkamusmadura1.csv").bufferedReader().use{
+            val kosakata = it.lineSequence().iterator()
+            while (kosakata.hasNext()){
+                val line = kosakata.next()
+                val data = line.split(",")
+                database.use {
+                    insert(Kosakata.TABLE_KOSAKATA,
+                Kosakata.indonesia to data[1],
+                Kosakata.madura to data[2])
+        }
             }
         }
-        toast("Persiapan telah selesai...")
     }
+//
+//    val kosakata = listOf(Kosakata("akar","ramok"),Kosakata("ampun","saporah"),Kosakata("anyam","ngekak"),Kosakata("asap","kokos"),Kosakata("awan","ondem"),Kosakata("terimakasih","sakalangkong"))
+//
+//    for (i in kosakata.indices){
+//        database.use {
+//            insert(Kosakata.TABLE_KOSAKATA,
+//                Kosakata.indonesia to kosakata[i].indonesia,
+//                Kosakata.madura to kosakata[i].madura)
+//        }
+//    }
+//    toast("Persiapan telah selesai...")
 
     override fun showListKosakata(data: List<Kosakata>) {
         data.let {
