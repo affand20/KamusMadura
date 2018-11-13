@@ -120,17 +120,7 @@ class MainActivity : AppCompatActivity(), MainView, AnkoLogger {
             }
         }
     }
-//
-//    val kosakata = listOf(Kosakata("akar","ramok"),Kosakata("ampun","saporah"),Kosakata("anyam","ngekak"),Kosakata("asap","kokos"),Kosakata("awan","ondem"),Kosakata("terimakasih","sakalangkong"))
-//
-//    for (i in kosakata.indices){
-//        database.use {
-//            insert(Kosakata.TABLE_KOSAKATA,
-//                Kosakata.indonesia to kosakata[i].indonesia,
-//                Kosakata.madura to kosakata[i].madura)
-//        }
-//    }
-//    toast("Persiapan telah selesai...")
+
 
     override fun showListKosakata(data: List<Kosakata>) {
         data.let {
