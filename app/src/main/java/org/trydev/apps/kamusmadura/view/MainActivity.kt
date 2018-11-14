@@ -54,12 +54,12 @@ class MainActivity : AppCompatActivity(), MainView, AnkoLogger {
             when(SWITHCER){
                 "INDONESIA_TO_MADURA" ->{
                     SWITHCER = "MADURA_TO_INDONESIA"
-                    input_kata.hint = "Terjemahkan Madura ke Indonesia"
+                    input_kata.hint = "Terjemahkan Indonesia ke Madura"
                     presenter.getAllMadura()
                 }
                 "MADURA_TO_INDONESIA" ->{
                     SWITHCER = "INDONESIA_TO_MADURA"
-                    input_kata.hint = "Terjemahkan Indonesia ke Madura"
+                    input_kata.hint = "Terjemahkan Madura ke Indonesia"
                     presenter.getAllIndonesia()
                 }
             }
@@ -107,15 +107,15 @@ class MainActivity : AppCompatActivity(), MainView, AnkoLogger {
     }
 
     private fun insertKosakata(){
-        applicationContext.assets.open("mobtekkamusmadura1.csv").bufferedReader().use{
+        applicationContext.assets.open("mobtekkamusmadura2.csv").bufferedReader().use{
             val kosakata = it.lineSequence().iterator()
             while (kosakata.hasNext()){
                 val line = kosakata.next()
                 val data = line.split(",")
                 database.use {
                     insert(Kosakata.TABLE_KOSAKATA,
-                Kosakata.indonesia to data[1],
-                Kosakata.madura to data[2])
+                Kosakata.indonesia to data[2],
+                Kosakata.madura to data[1])
                 }
             }
         }
