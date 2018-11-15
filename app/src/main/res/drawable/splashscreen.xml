@@ -7,8 +7,8 @@
           android:width="150dp"
           android:height="150dp"
           >
-        <bitmap android:src="@drawable/logobiru"
-            android:gravity="fill|fill"
+        <bitmap android:src="@drawable/splash1"
+            android:gravity="fill"
 
         />
     </item>
